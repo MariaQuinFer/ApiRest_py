@@ -1,21 +1,16 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
-# from flask_login import LoginManager
 from config import Config
 
 
 # Routes
-from .routes import AuthRoutes, AuthenticateRoute, BookCarrouselRoutes, BooksByAuthorRoutes, BooksByGenreRoutes, BooksByEditorialRoutes, BooksByTitleRoutes, BooksRoutes, AuthorRoutes, EditorialsRoutes, GenresRoutes, UserRoutes, LendRoute
+from .routes import AuthenticateRoute, BookCarrouselRoutes, BooksByAuthorRoutes, BooksByGenreRoutes, BooksByEditorialRoutes, BooksByTitleRoutes, BooksRoutes, AuthorRoutes, EditorialsRoutes, GenresRoutes, UserRoutes, LendRoute
 
 # Appication initializations
 app = Flask(__name__)
 app.config['SECRET_KEY'] = Config.SECRET_KEY
 
 CORS(app, resources={r"/*": {"origins": "*"}})
-
-# Configuración del administrador del inicio de sesión
-# login_manager = LoginManager()
-# login_manager.init_app(app)
 
 
 def page_not_found(error):
@@ -30,7 +25,6 @@ def init_app(config):
     app.register_error_handler(404, page_not_found)
 
     # Blueprints
-    # app.register_blueprint(AuthRoutes.main)
     app.register_blueprint(AuthenticateRoute.main)
     app.register_blueprint(BooksRoutes.books)
     app.register_blueprint(BookCarrouselRoutes.carousel)

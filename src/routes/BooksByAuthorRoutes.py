@@ -7,6 +7,8 @@ from src.utils.Security import Security
 
 books_by_author = Blueprint("books_by_author", __name__)
 
+# Route to search for books by author name
+
 
 @books_by_author.route("/books_by_author/<nombre>", methods=["GET"])
 def read_booK_by_author(nombre):

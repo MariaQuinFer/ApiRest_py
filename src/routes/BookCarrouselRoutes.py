@@ -5,6 +5,8 @@ from src.database.db import get_connection
 
 carousel = Blueprint("carousel", __name__)
 
+# Unprotected route to put in the books carousel, where the last 5 ids added to the books table will be shown
+
 
 @carousel.route("/carousel", methods=['GET'])
 def get_last_books():
@@ -21,7 +23,6 @@ def get_last_books():
         cursor.execute(sql)
         data = cursor.fetchall()
         if data != None:
-            # print(data)
             books = []
             for row in data:
                 book = {
@@ -32,8 +33,6 @@ def get_last_books():
                     "Title": row[4],
                 }
                 books.append(book)
-            # print('libro:', book)
-            # print('libros:', books)
             return jsonify({"books": books, "message": "Booksss list", "success": True})
         else:
             return None

@@ -50,7 +50,7 @@ class Book():
             JOIN editorials e 
             ON l.idEditorial=e.id ORDER BY l.idAutor ASC;
             """)
-            data = cursor.fetchall()  # trae todos los datos
+            data = cursor.fetchall()  # Bring all the data
             return [Book.from_row(row) for row in data]
 
     @staticmethod
@@ -86,7 +86,7 @@ class Book():
         """.format(book.ISBN, book.titulo, book.idAutor, book.idGenre, book.idEditorial,
                    book.idioma, book.paginas, book.portada, book.descripcion, book.estado)
         cursor.execute(sql)
-        connection.commit()  # Confirma la accion de añadir libro
+        connection.commit()  # Confirm the action of adding book
 
     @staticmethod
     def delete_book(ISBN):
@@ -94,7 +94,7 @@ class Book():
         cursor = connection.cursor()
         sql = "DELETE FROM libros WHERE ISBN='{0}'".format(ISBN)
         cursor.execute(sql)
-        connection.commit()  # Confirma que se ha eliminado un libro
+        connection.commit()  # Confirm that a book has been deleted
 
     @staticmethod
     def update_book(ISBN, book):
@@ -115,4 +115,4 @@ class Book():
         """.format(ISBN, book.titulo, book.idAutor, book.idGenre, book.idEditorial,
                    book.idioma, book.paginas, book.portada, book.descripcion, book.estado)
         cursor.execute(sql)
-        connection.commit()  # Confirma la accion de modificar un libro
+        connection.commit()  # Confirm the action of modifying a workbook

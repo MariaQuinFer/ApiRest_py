@@ -54,7 +54,7 @@ class Editorial():
             VALUES ('{0}')
         """.format(editorial.name)
         cursor.execute(sql)
-        connection.commit()  # Confirma la accion de añadir libro
+        connection.commit()  # Confirm the action of adding editorial
 
     @staticmethod
     def delete_editorial(id):
@@ -62,7 +62,7 @@ class Editorial():
         cursor = connection.cursor()
         sql = "DELETE FROM editorials WHERE id='{0}'".format(id)
         cursor.execute(sql)
-        connection.commit()  # Confirma que se ha eliminado un libro
+        connection.commit()  # Confirm that a publisher has been removed
 
     @staticmethod
     def update_editorial(id, editorial):
@@ -74,4 +74,4 @@ class Editorial():
             WHERE id = {1}
         """.format(editorial.name, id)
         cursor.execute(sql)
-        connection.commit()  # Confirma la accion de añadir autor
+        connection.commit()  # Confirm the action of updating editorial

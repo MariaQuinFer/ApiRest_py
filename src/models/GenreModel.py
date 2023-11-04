@@ -53,7 +53,7 @@ class Genre():
             VALUES ('{0}')
         """.format(genre.name)
         cursor.execute(sql)
-        connection.commit()  # Confirma la accion de añadir género
+        connection.commit()  # Confirm the action of adding genre
 
     @staticmethod
     def delete_genre(id):
@@ -61,7 +61,7 @@ class Genre():
         cursor = connection.cursor()
         sql = "DELETE FROM genres WHERE id='{0}'".format(id)
         cursor.execute(sql)
-        connection.commit()  # Confirma que se ha eliminado un género
+        connection.commit()  # Confirm that a genre has been removed
 
     @staticmethod
     def update_genre(id, genre):
@@ -73,4 +73,4 @@ class Genre():
             WHERE id = {}
         """.format(genre.name, id)
         cursor.execute(sql)
-        connection.commit()  # Confirma la accion de moficar un género
+        connection.commit()  # Confirms the action of modifying a genre

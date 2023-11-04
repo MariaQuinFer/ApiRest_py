@@ -21,36 +21,32 @@ lend = Blueprint("lend", __name__)
 def update_book_status(ISBN):
     connection = get_connection()
     with connection.cursor() as cursor:
-        # Ejecutar el código SQL para actualizar el estado del libro
+        # Run SQL code to update workbook status
         sql = ("""
             UPDATE libros
             SET estado = "No disponible"
             WHERE ISBN = '{0}'
         """.format(ISBN))
         cursor.execute(sql)
-    # Confirmar los cambios en la base de datos
     connection.commit()
-    # Cerrar el cursor
     cursor.close()
 
 
 def update_book_status_again(ISBN):
     connection = get_connection()
     with connection.cursor() as cursor:
-        # Ejecutar el código SQL para actualizar el estado del libro
+        # Execute the SQL code to update the status of the book
         sql = ("""
             UPDATE libros
             SET estado = "Disponible"
             WHERE ISBN = '{0}'
         """.format(ISBN))
         cursor.execute(sql)
-    # Confirmar los cambios en la base de datos
     connection.commit()
-    # Cerrar el cursor
     cursor.close()
 
 
-# Ruta para solicitar un préstamo:
+# Route to request a loan:
 @lend.route("/lend", methods=['POST'])
 def lend_book():
 
@@ -73,7 +69,7 @@ def lend_book():
         response = jsonify({'message': 'Unauthorized'})
         return response, 401
 
-# Ruta para eliminar un préstamo
+# Route to delete a loan
 
 
 @lend.route("/lend/<id>", methods=["DELETE"])
@@ -91,8 +87,8 @@ def delete_lend(id):
         response = jsonify({'message': 'Unauthorized'})
         return response, 401
 
-# Ruta para actualizar el estado del préstamo (prestado o devuelto)
 
+# Route to update loan status (borrowed or returned)
 
 @lend.route("/lend/<id>", methods=['PUT'])
 def update_action(id):
@@ -114,7 +110,7 @@ def update_action(id):
         response = jsonify({'message': 'Unauthorized'})
         return response, 401
 
-# Ruta para obetner una lista con todos los préstamos(devoluciones) realizados
+# Route to obtain a list with all the loans (returns) made
 
 
 @lend.route("/lend", methods=['GET'])
@@ -167,8 +163,7 @@ def lend_list():
         return response, 401
 
 
-# Ruta para obtener el usuario con sesion iniciada junto con el libro prestado si tiene préstamo
-
+# Route to obtain the user logged in along with the loaned book if it is on loan
 @lend.route("/lend/<id>", methods=['GET'])
 def lend_user_book(id):
 

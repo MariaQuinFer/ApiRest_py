@@ -37,9 +37,8 @@ class Lend():
             WHERE ISBN = '{0}'
              """.format(lend.ISBN))
             cursor.execute(sql)
-    # Confirmar los cambios en la base de datos
+            # Confirm changes, updates from available to unavailable when the book is requested to be borrowed
             connection.commit()
-    # Cerrar el cursor
             cursor.close()
 
     @staticmethod
@@ -48,7 +47,7 @@ class Lend():
         with connection.cursor() as cursor:
             sql = "DELETE FROM prestamo WHERE id='{0}'".format(id)
             cursor.execute(sql)
-            connection.commit()  # Confirma que se ha eliminado un prestamo
+            connection.commit()  # Confirm that a loan has been deleted
 
     @staticmethod
     def update_action(id, lend):
@@ -56,6 +55,7 @@ class Lend():
         with connection.cursor() as cursor:
             sql = "call sp_updateLoan({0},'{1}')".format(id, lend.action)
             cursor.execute(sql)
+            # Select the ISBN of the id entered in the previous query
             sql = ("SELECT ISBN FROM prestamo WHERE id = {0}".format(id))
             cursor.execute(sql)
             ISBN = cursor.fetchone()[0]
@@ -63,5 +63,6 @@ class Lend():
             sql = (
                 """UPDATE libros SET estado = "Disponible" WHERE ISBN = '{0}'""".format(ISBN))
             cursor.execute(sql)
+            # Commit changes, updates from unavailable to available when the book is returned
             connection.commit()
             cursor.close

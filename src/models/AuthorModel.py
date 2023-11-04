@@ -55,7 +55,7 @@ class Author():
             VALUES ('{0}')
         """.format(author.nombre)
         cursor.execute(sql)
-        connection.commit()  # Confirma la accion de añadir autor
+        connection.commit()  # Confirm the action of adding author
 
     @staticmethod
     def delete_author(id):
@@ -63,7 +63,7 @@ class Author():
         cursor = connection.cursor()
         sql = "DELETE FROM autores WHERE id='{0}'".format(id)
         cursor.execute(sql)
-        connection.commit()  # Confirma que se ha eliminado un autor
+        connection.commit()  # Confirm that an author has been removed
 
     @staticmethod
     def update_author(id, author):
@@ -75,4 +75,4 @@ class Author():
             WHERE id = {1}
         """.format(author.nombre, id)
         cursor.execute(sql)
-        connection.commit()  # Confirma la accion de añadir autor
+        connection.commit()  # Confirm the update author action

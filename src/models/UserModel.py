@@ -60,7 +60,7 @@ class User():
         with connection.cursor() as cursor:
             sql = "DELETE FROM users WHERE id='{0}'".format(id)
             cursor.execute(sql)
-            connection.commit()  # Confirma que se ha eliminado un usuario
+            connection.commit()  # Confirm that a user has been deleted
 
     @staticmethod
     def update_usertype(id, user):
@@ -72,7 +72,7 @@ class User():
                 WHERE id = {1}
             """.format(user.usertype, id)
             cursor.execute(sql)
-            connection.commit()  # Confirma la accion de modificar el usertype de un usuario
+            connection.commit()  # Confirms the action of modifying the usertype of a user
 
     @staticmethod
     def update_password(id, user):
@@ -80,42 +80,4 @@ class User():
         with connection.cursor() as cursor:
             sql = "call sp_updatePassword({0},'{1}')".format(id, user.password)
             cursor.execute(sql)
-            connection.commit()  # Confirma la accion de modificar el usertype de un usuario
-
-    # @staticmethod
-    # def verify_username(user):
-    #     connection = get_connection()
-    #     with connection.cursor() as cursor:
-    #         sql = "SELECT username FROM users WHERE username = '{0}'".format(
-    #             user.username)
-    #         cursor.execute(sql)
-    #         data = cursor.fetchone()
-
-    # @staticmethod
-    # def verify_email(user):
-    #     connection = get_connection()
-    #     with connection.cursor() as cursor:
-    #         sql = "SELECT email FROM users WHERE email = '{0}'".format(
-    #             user.email)
-    #         cursor.execute(sql)
-    #         data = cursor.fetchone()
-
-    # @staticmethod
-    # def register_user(user):
-    #     connection = get_connection()
-    #     with connection.cursor() as cursor:
-    #         sql = "call sp_addUser('{0}', '{1}', '{2}', '{3}')".format(
-    #             user.username, user.email, user.password, user.fullname)
-    #         cursor.execute(sql)
-    #         connection.commit()  # Confirma la acción de registro de un usuario
-    #     connection.close()
-
-    # @staticmethod
-    # def update_user(id, user):
-    #     connection = get_connection()
-    #     with connection.cursor() as cursor:
-    #         sql = "call sp_updateUser({0}, '{1}', '{2}', '{3}', '{4}')".format(
-    #             id, user.username, user.email, user.password, user.fullname)
-    #         cursor.execute(sql)
-    #         # Confirma la accion de modificar cualquier registro de un usuario menos el usertype
-    #         connection.commit()
+            connection.commit()  # Confirms the action of modifying the usertype of a user

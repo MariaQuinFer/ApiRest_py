@@ -1,16 +1,8 @@
-# from flask_mysqldb import MySQL
 from decouple import config
 import pymysql
 import traceback
 
-
 from src.utils.Logger import Logger
-
-
-# from app import app
-
-# Connection DB
-# conexion = MySQL(app)
 
 
 def get_connection():

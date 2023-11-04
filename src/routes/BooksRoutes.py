@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 
 import traceback
 
-from src.validations_books import *
+from src.utils.validations_books import *
 
 # Logger
 from src.utils.Logger import Logger
@@ -104,7 +104,7 @@ def add_book():
                 Logger.add_to_log("error", str(ex))
                 Logger.add_to_log("error", traceback.format_exc())
         else:
-            return jsonify({"message": "Invalid parameters...", "success": False})
+            return jsonify({"message": "Invalid parameters...", "success": False}), 205
     else:
         response = jsonify({'message': 'Unauthorized'})
         return response, 401

@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 
 import traceback
 
-from src.validations_genres import *
+from src.utils.validations_genres import *
 
 # Logger
 from src.utils.Logger import Logger
