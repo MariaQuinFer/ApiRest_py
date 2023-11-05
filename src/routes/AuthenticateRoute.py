@@ -96,7 +96,7 @@ def register():
             user_username = cursor.fetchone()
             cursor.close()
         if user_username:
-            return jsonify({'message': 'El nombre de usuario ya está registrado'}), 202
+            return jsonify({'message': 'El nombre de usuario ya está registrado'}), 200
         # Validate that the email is not registered
         connection = get_connection()
         with connection.cursor() as cursor:
@@ -105,7 +105,7 @@ def register():
             user_mail = cursor.fetchone()
             cursor.close()
         if user_mail:
-            return jsonify({'message': 'El correo electrónico ya está registrado'}), 203
+            return jsonify({'message': 'El correo electrónico ya está registrado'}), 200
         # Insert the new user into the database
         connection = get_connection()
         with connection.cursor() as cursor:
